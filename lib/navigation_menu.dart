@@ -5,6 +5,7 @@ import 'package:yt_ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:yt_ecommerce_admin_panel/utils/helpers/helper_functions.dart';
 
 import 'features/linkup_shop/screens/home/home.dart';
+import 'features/linkup_shop/screens/market/market.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -42,7 +43,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    Container(color: Colors.purple),
+    const MarketScreen(),
     Container(color: Colors.orange),
   ];
 }
