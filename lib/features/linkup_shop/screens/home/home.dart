@@ -1,8 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
+// Import necessary packages
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/home_appbar.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/home_categories.dart';
+import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/posting_page.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/promo_slider.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/scanning_button.dart';
 
@@ -22,6 +23,7 @@ import '../../../../utils/constants/text_strings.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 
+// HomeScreen widget
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -48,6 +50,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
             ),
@@ -58,22 +61,44 @@ class HomeScreen extends StatelessWidget {
                   TPromoSlider(banners: [TImages.promoBanner1, TImages.promoBanner2, TImages.promoBanner3]),
 
                   ///  popular products
-                  TGridLayout(itemCount: 4, itemBuilder: (_ , index) => const TProductCardVertical(),),
+                  TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical()),
                 ],
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ScanningPage()),
-          );
-        },
-        child: Icon(Icons.camera),
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            right: 16,
+            bottom: 16,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ScanningPage()),
+                );
+              },
+              child: Icon(Icons.camera),
+            ),
+          ),
+          Positioned(
+            right: 16,
+            bottom: 86, // Adjust this value as needed to space the buttons
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostingPage()),
+                );
+              },
+              child: Icon(Iconsax.add),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
