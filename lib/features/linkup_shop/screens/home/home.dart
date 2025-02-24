@@ -1,5 +1,7 @@
 // Import necessary packages
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/home_appbar.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/home/widgets/home_categories.dart';
@@ -22,6 +24,7 @@ import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../../../utils/helpers/helper_functions.dart';
+import '../profile/profile.dart';
 
 // HomeScreen widget
 class HomeScreen extends StatelessWidget {
@@ -36,7 +39,7 @@ class HomeScreen extends StatelessWidget {
             TPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  const HomeAppBar(),
+                  HomeAppBar( onPressed: () =>Get.to(()=> const ProfileScreen()),),
                   const SizedBox(height: TSizes.spaceBtwSections),
                   TSearchContainer(text: 'Search'),
                   SizedBox(height: TSizes.spaceBtwSections),

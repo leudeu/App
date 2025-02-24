@@ -1,8 +1,27 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-///PostingPage widget
-class PostingPage extends StatelessWidget {
+/// PostingPage widget
+class PostingPage extends StatefulWidget {
   const PostingPage({super.key});
+
+  @override
+  _PostingPageState createState() => _PostingPageState();
+}
+
+class _PostingPageState extends State<PostingPage> {
+  final ImagePicker _picker = ImagePicker();
+  List<XFile>? _images = [];
+
+  Future<void> _pickImages() async {
+    final List<XFile>? selectedImages = await _picker.pickMultiImage();
+    if (selectedImages != null) {
+      setState(() {
+        _images = selectedImages;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +58,24 @@ class PostingPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
-                // Logic to upload images
-              },
+              onPressed: _pickImages,
               child: Text('Upload Images'),
             ),
+            SizedBox(height: 16),
+            _images != null && _images!.isNotEmpty
+                ? Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: _images!.map((image) {
+                return Image.file(
+                  File(image.path),
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                );
+              }).toList(),
+            )
+                : Text(''),
             Spacer(),
             ElevatedButton(
               onPressed: () {

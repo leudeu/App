@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:get/get_core/src/get_main.dart";
 import "package:iconsax/iconsax.dart";
 
 import "../../../../common/widgets/appbar/appbar.dart";
@@ -10,6 +12,7 @@ import "../../../../common/widgets/texts/section_heading.dart";
 import "../../../../utils/constants/colors.dart";
 import "../../../../utils/constants/image_strings.dart";
 import "../../../../utils/constants/sizes.dart";
+import "../profile/profile.dart";
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -26,7 +29,7 @@ class SettingScreen extends StatelessWidget {
                   TAppBar(title: Text('Account', style:Theme.of(context).textTheme.headlineMedium!.apply(color:TColors.white),), backgroundColor: TColors.primary,),
 
 
-                  TUserProfileTile(),
+                  TUserProfileTile(onPressed: () =>Get.to(()=> const ProfileScreen()),),
                   const SizedBox(height:TSizes.spaceBtwSections),
                 ]
             ),),
@@ -43,6 +46,8 @@ class SettingScreen extends StatelessWidget {
                   TSettingMenuTile(icon: Iconsax.security_card, title:'Account Privacy',subTitle:'set contact address', onTap: (){},),
 
                   SizedBox(height: TSizes.spaceBtwSections),
+
+
                   TSectionHeading(title: 'App Settings', showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwItems),
                   TSettingMenuTile(icon: Iconsax.document_upload, title:'Load data',subTitle:'upload from !!', onTap: (){},),
