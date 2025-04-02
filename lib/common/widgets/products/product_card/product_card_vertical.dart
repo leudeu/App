@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../features/linkup_shop/screens/market/product_details.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -18,7 +20,7 @@ class TProductCardVertical extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: () {} ,
+      onTap: () => Get.to(()=> ProductDetails()) ,
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -35,7 +37,7 @@ class TProductCardVertical extends StatelessWidget {
               backgroundColor:dark ? TColors.dark: TColors.light,
               child: Stack(
                 children: [
-                  TRoundedImage(imageUrl: TImages.productImage8 , applyImageRadius: true),
+                  TRoundedImage(imageUrl: TImages.productImage3 , applyImageRadius: true),
 
                   ///sale
                   Positioned(
@@ -71,8 +73,18 @@ class TProductCardVertical extends StatelessWidget {
                     const SizedBox(width: TSizes.xs),
                     const Icon(Iconsax.verify5,color :TColors.primary, size: TSizes.iconXs)
                   ]
-                )
-              ]
+                ),
+                Row(
+                  children: [
+                     Text(
+                       '10000 CFA',
+                       maxLines: 1,
+                       overflow: TextOverflow.ellipsis,
+                       style: Theme.of(context).textTheme.headlineMedium,
+                     ),
+                  ],
+                ),
+              ],
             ),
             ),
         ],

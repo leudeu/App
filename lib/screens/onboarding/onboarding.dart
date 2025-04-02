@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../features/authentication/controllers.onboarding/onboarding_controller.dart';
+import '../../features/authentication/controllers.onboarding/onboarding/onboarding_controller.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/image_strings.dart';
 import '../../utils/constants/sizes.dart';

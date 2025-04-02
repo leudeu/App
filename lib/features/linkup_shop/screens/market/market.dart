@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/market/seller_profile_page.dart';
-import '../../../../common/widgets/appbar/appbar.dart';
-import '../../../../common/widgets/containers/search_container.dart';
-import '../../../../utils/constants/colors.dart';
+import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/market/widget/MostVisitedTabPage.dart';
+import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/market/widget/OnSalesTabPage.dart';
+import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/market/widget/sellers.dart';
 import '../../../../utils/constants/sizes.dart';
-import 'seller_profile_page.dart';
 import 'seller_detail_page.dart';
 
 class MarketScreen extends StatelessWidget {
@@ -13,51 +12,58 @@ class MarketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TAppBar(
-        title: Text('Market', style: Theme.of(context).textTheme.headlineMedium),
-        backgroundColor: TColors.white,
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search Sellers...',
-                prefixIcon: Icon(Iconsax.search_normal),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title : Column(
+            mainAxisAlignment : MainAxisAlignment.start,
+            crossAxisAlignment : CrossAxisAlignment.start,
+
+            children: [
+              Text("Market", style : Theme.of(context).textTheme.headlineLarge),
+              SizedBox(height:TSizes.md),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled : true,
+                    fillColor : Colors.white,
+                    hintText: 'Search Sellers...',
+                    prefixIcon: Icon(Iconsax.search_normal),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    // Implement search logic here
+                  },
                 ),
               ),
-              onChanged: (value) {
-                // Implement search logic here
-              },
-            ),
+              SizedBox(height:TSizes.md),
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: sellers.length,
-              itemBuilder: (context, index) {
-                final seller = sellers[index];
-                return SellerProfile(
-                  image: seller.image,
-                  name: seller.name,
-                  phoneNumber: seller.phoneNumber,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SellerDetailPage(sellerName: seller.name ?? 'Unknown'),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-        ],
+          backgroundColor : Colors.blue,
+
+          toolbarHeight: 150,
+          bottom: TabBar(
+            tabs:[
+              Tab(text:"sellers"),
+              Tab(text:"On sales"),
+              Tab(text:"Most visited"),
+            ]
+          )
+
+        ),
+        body: TabBarView(
+          children: [
+            SellersTabPage(),
+
+            OnsalesTabPage(),
+
+            MostVisitedTabPage(),
+          ]
+        )
       ),
     );
   }

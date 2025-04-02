@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:yt_ecommerce_admin_panel/features/linkup_shop/screens/profile/widget/profile_menu.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/images/t_circular_image.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
+import '../../../../screens/login/login.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,7 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     TCircularImage (image: TImages.user, width:80, height: 80),
                     TextButton(onPressed: () {} , child: const Text ('change Profile Picture')),
+
                   ]
                 ),
               ),
@@ -62,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
 
               Center(
                child: TextButton(
-                 onPressed: () {},
+                 onPressed: () => Get.to(()=> LoginScreen()),
                  child: const Text('close Account', style: TextStyle(color: Colors.red)),
                )
               )

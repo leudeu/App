@@ -21,7 +21,8 @@ class THomeCategories extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index){
 
-            return TVerticalImageText(image: TImages.shoeIcon, title: 'shoes', onTap:() {} ,);
+            return TVerticalImageText(image: TImages.animalIcon   , title: 'shoes', onTap:() {} ,);
+
 
           }),
     );

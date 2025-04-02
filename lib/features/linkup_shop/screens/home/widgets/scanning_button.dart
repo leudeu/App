@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
 class ScanningPage extends StatefulWidget {
+  const ScanningPage({super.key});
+
   @override
   _ScanningPageState createState() => _ScanningPageState();
 }

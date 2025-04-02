@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import '../../../../../navigation_menu.dart';
 
 /// PostingPage widget
 class PostingPage extends StatefulWidget {
@@ -15,13 +18,11 @@ class _PostingPageState extends State<PostingPage> {
   List<XFile>? _images = [];
 
   Future<void> _pickImages() async {
-    final List<XFile>? selectedImages = await _picker.pickMultiImage();
-    if (selectedImages != null) {
-      setState(() {
-        _images = selectedImages;
-      });
+    final List<XFile> selectedImages = await _picker.pickMultiImage();
+    setState(() {
+      _images = selectedImages;
+    });
     }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +79,12 @@ class _PostingPageState extends State<PostingPage> {
                 : Text(''),
             Spacer(),
             ElevatedButton(
-              onPressed: () {
-                // Logic to post the article
-              },
+              onPressed: () => Get.offAll(() =>  NavigationMenu()),
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 50),
               ),
               child: Text('Post'),
+
             ),
           ],
         ),
